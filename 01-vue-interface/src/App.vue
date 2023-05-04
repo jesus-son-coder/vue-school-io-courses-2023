@@ -1,17 +1,36 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="main-app" class="container">
+    <h4>Title</h4>
+    <font-awesome-icon icon="plus" class="mr-2" /> Add Appointment
+    <br><br>
+    <div v-for="(item, i) in appointments" v-bind:key="i">
+      <h4>{{item.petName}}</h4>
+      <p>{{item.aptNotes}}</p>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import axios from "axios";
 
 export default {
-  name: 'App',
+  name: 'MainApp',
   components: {
-    HelloWorld
+    FontAwesomeIcon,
+
+  },
+  data: function() {
+    return {
+      title: "Appointment List",
+      appointments: [
+
+      ]
+    }
+  },
+  mounted() {
+    axios.get("./data/appointments.json")
+      .then(response => (this.appointments = response.data));
   }
 }
 </script>
