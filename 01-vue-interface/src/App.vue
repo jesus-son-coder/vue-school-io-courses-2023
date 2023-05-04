@@ -1,14 +1,21 @@
 <template>
   <div id="main-app" class="container">
-    <h4>Title</h4>
-    <font-awesome-icon icon="plus" class="mr-2" /> Add Appointment
-    <br><br>
-    <appointment-list :appointments="appointments"></appointment-list>
+    <div class="row">
+      <h4>Title</h4>
+        <div class="row button-container">
+          <font-awesome-icon icon="plus" class="mr-2" /> Add Appointment
+          <br><br>
+        </div>
+        <div class="row">
+          <appointment-list :appointments="appointments" @remove="removeItem" />
+        </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import _ from "lodash";
 import axios from "axios";
 import AppointmentList from '@/components/AppointmentList';
 
@@ -21,8 +28,12 @@ export default {
   data: function() {
     return {
       title: "Appointment List",
-      appointments: [
-      ]
+      appointments: []
+    }
+  },
+  methods: {
+    removeItem: function(apt) {
+      this.appointments = _.without(this.appointments, apt);
     }
   },
   mounted() {
@@ -40,5 +51,13 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.button-container {
+  align-items: center;
+}
+
+.svg-inline--fa {
+  width: auto !important;
 }
 </style>
