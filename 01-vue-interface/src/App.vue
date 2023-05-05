@@ -6,11 +6,15 @@
         <add-appointment @add="addItem" />
       </div>
       <div class="row search-container">
-        <search-appointments @searchRecord="searchAppointments" />
+        <search-appointments
+          @searchRecord="searchAppointments"
+          :myKey="filterKey"
+          :myDir="filterDir"
+        />
       </div>
       <div class="row">
         <appointment-list
-          :appointments="searchApts"
+          :appointments="filteredApts"
           @remove="removeItem"
           @edit="editItem"
         />
@@ -39,10 +43,12 @@ export default {
       appointments: [],
       aptIndex: 0,
       searchTerms: "",
+      filterKey: "petName",
+      filterDir: "asc",
     };
   },
   computed: {
-    searchApts: function () {
+    searchedApts: function () {
       return this.appointments.filter((item) => {
         return (
           item.petName.toLowerCase().match(this.searchTerms.toLowerCase()) ||
@@ -50,6 +56,15 @@ export default {
           item.aptNotes.toLowerCase().match(this.searchTerms.toLowerCase())
         );
       });
+    },
+    filteredApts: function () {
+      return _.orderBy(
+        this.searchedApts,
+        (item) => {
+          return item[this.filterKey].toLowerCase();
+        },
+        this.filterDir
+      );
     },
   },
   methods: {
@@ -85,21 +100,15 @@ export default {
 </script>
 
 <style>
-#app {
+#main-app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
 
 .search-container {
-  /* align-items: center; */
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
-/*
-.svg-inline--fa {
-  width: auto !important;
-} */
 </style>
