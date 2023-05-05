@@ -3,9 +3,9 @@
     <div class="row">
       <h4>Title</h4>
       <div class="row button-container">
-        <font-awesome-icon icon="plus" class="mr-2" /> Add Appointment
-        <br /><br />
+        <add-appointment />
       </div>
+      <br /><br />
       <div class="row">
         <appointment-list
           :appointments="appointments"
@@ -18,16 +18,16 @@
 </template>
 
 <script>
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import _ from "lodash";
 import axios from "axios";
 import AppointmentList from "@/components/AppointmentList";
+import AddAppointment from "@/components/AddAppointment";
 
 export default {
   name: "MainApp",
   components: {
-    FontAwesomeIcon,
     AppointmentList,
+    AddAppointment,
   },
   data: function () {
     return {
@@ -72,6 +72,7 @@ export default {
 
 .button-container {
   align-items: center;
+  margin-bottom: 30px;
 }
 
 .svg-inline--fa {

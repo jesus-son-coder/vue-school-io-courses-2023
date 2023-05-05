@@ -16,7 +16,7 @@
           <div class="d-flex justify-content-between">
             <span
               class="h4 text-primary"
-              contenteditable="contenteditable"
+              contenteditable="true"
               @blur="
                 $emit('edit', item.aptId, 'petName', $event.target.innerText)
               "
@@ -28,7 +28,7 @@
           <div class="owner-name">
             <span class="font-weight-bold text-primary mr-1">Owner: </span>
             <span
-              contenteditable="contenteditable"
+              contenteditable="true"
               @blur="
                 $emit('edit', item.aptId, 'petOwner', $event.target.innerText)
               "
@@ -36,7 +36,7 @@
             >
           </div>
           <div
-            contenteditable="contenteditable"
+            contenteditable="true"
             @blur="
               $emit('edit', item.aptId, 'aptNotes', $event.target.innerText)
             "
