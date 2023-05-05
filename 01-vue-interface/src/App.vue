@@ -3,7 +3,7 @@
     <div class="row">
       <h4>Title</h4>
       <div class="row button-container">
-        <add-appointment />
+        <add-appointment @add="addItem" />
       </div>
       <br /><br />
       <div class="row">
@@ -45,6 +45,11 @@ export default {
         aptId: id,
       });
       this.appointments[aptIndex][field] = text;
+    },
+    addItem: function (apt) {
+      apt.aptId = this.aptIndex;
+      this.aptIndex++;
+      this.appointments.push(apt);
     },
   },
   mounted() {
