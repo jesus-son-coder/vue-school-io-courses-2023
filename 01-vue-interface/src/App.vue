@@ -5,10 +5,12 @@
       <div class="row button-container">
         <add-appointment @add="addItem" />
       </div>
-      <br /><br />
+      <div class="row search-container">
+        <search-appointments @searchRecord="searchAppointments" />
+      </div>
       <div class="row">
         <appointment-list
-          :appointments="appointments"
+          :appointments="searchApts"
           @remove="removeItem"
           @edit="editItem"
         />
@@ -22,19 +24,33 @@ import _ from "lodash";
 import axios from "axios";
 import AppointmentList from "@/components/AppointmentList";
 import AddAppointment from "@/components/AddAppointment";
+import SearchAppointments from "@/components/SearchAppointments";
 
 export default {
   name: "MainApp",
   components: {
     AppointmentList,
     AddAppointment,
+    SearchAppointments,
   },
   data: function () {
     return {
       title: "Appointment List",
       appointments: [],
       aptIndex: 0,
+      searchTerms: "",
     };
+  },
+  computed: {
+    searchApts: function () {
+      return this.appointments.filter((item) => {
+        return (
+          item.petName.toLowerCase().match(this.searchTerms.toLowerCase()) ||
+          item.petOwner.toLowerCase().match(this.searchTerms.toLowerCase()) ||
+          item.aptNotes.toLowerCase().match(this.searchTerms.toLowerCase())
+        );
+      });
+    },
   },
   methods: {
     removeItem: function (apt) {
@@ -50,6 +66,9 @@ export default {
       apt.aptId = this.aptIndex;
       this.aptIndex++;
       this.appointments.push(apt);
+    },
+    searchAppointments: function (terms) {
+      this.searchTerms = terms;
     },
   },
   mounted() {
@@ -75,12 +94,12 @@ export default {
   margin-top: 60px;
 }
 
-.button-container {
-  align-items: center;
+.search-container {
+  /* align-items: center; */
   margin-bottom: 30px;
 }
-
+/*
 .svg-inline--fa {
   width: auto !important;
-}
+} */
 </style>
