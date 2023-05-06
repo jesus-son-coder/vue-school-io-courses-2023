@@ -26,6 +26,7 @@
           href="#"
           class="dropdown-item d-flex justify-content-between"
           id="petName"
+          @click="$emit('requestKey', 'petName')"
         >
           Pet Name
           <font-awesome-icon icon="check" v-if="myKey === 'petName'" />
@@ -35,6 +36,7 @@
           class="dropdown-item d-flex justify-content-between"
           href="#"
           id="aptDate"
+          @click="$emit('requestKey', 'aptDate')"
         >
           Date
           <font-awesome-icon icon="check" v-if="myKey === 'aptDate'" />
@@ -44,6 +46,7 @@
           href="#"
           class="dropdown-item d-flex justify-content-between"
           id="ownerName"
+          @click="$emit('requestKey', 'petOwner')"
         >
           Owner
           <font-awesome-icon icon="check" v-if="myKey === 'petOwner'" />
@@ -55,6 +58,7 @@
           class="dropdown-item d-flex justify-content-between"
           href="#"
           id="asc"
+          @click="$emit('requestDir', 'asc')"
         >
           Asc
           <font-awesome-icon icon="check" v-if="myDir === 'asc'" />
@@ -64,6 +68,7 @@
           class="dropdown-item d-flex justify-content-between"
           href="#"
           id="desc"
+          @click="$emit('requestDir', 'desc')"
         >
           Desc
           <font-awesome-icon icon="check" v-if="myDir === 'desc'" />

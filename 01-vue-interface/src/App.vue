@@ -8,6 +8,8 @@
       <div class="row search-container">
         <search-appointments
           @searchRecord="searchAppointments"
+          @requestKey="changeKey"
+          @requestDir="changeDir"
           :myKey="filterKey"
           :myDir="filterDir"
         />
@@ -84,6 +86,12 @@ export default {
     },
     searchAppointments: function (terms) {
       this.searchTerms = terms;
+    },
+    changeKey: function (value) {
+      this.filterKey = value;
+    },
+    changeDir: function (value) {
+      this.filterDir = value;
     },
   },
   mounted() {
