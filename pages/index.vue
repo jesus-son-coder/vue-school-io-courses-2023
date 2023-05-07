@@ -13,11 +13,23 @@
 export default {
   name: 'IndexPage',
 
+  data() {
+    return {
+      rivers: []
+    }
+  },
+
+  async fetch () {
+    const res = await this.$http.$get('https://api.nuxtjs.dev/rivers');
+    this.rivers = res;
+  }
+
+  /*
   async asyncData ({ $http }) {
     const res = await $http.$get('https://api.nuxtjs.dev/rivers');
     return {
       rivers: res
     }
-  }
+  } */
 }
 </script>
