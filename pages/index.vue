@@ -13,6 +13,21 @@
 export default {
   name: 'IndexPage',
 
+  head() {
+    return {
+      meta: [
+        {
+          hid: 'title',
+          content: 'Home Page RV CK'
+        },
+        {
+          hid: 'description',
+          content: 'This is the Home Page of RV CK'
+        },
+      ]
+    }
+  },
+  /*
   head: {
     meta: [
       {
@@ -25,7 +40,7 @@ export default {
       },
     ]
   },
-
+*/
   data() {
     return {
       rivers: []
