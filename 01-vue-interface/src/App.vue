@@ -1,7 +1,7 @@
 <template>
   <div id="main-app" class="container">
     <div class="row">
-      <h4>Title</h4>
+      <h4>{{ title }}</h4>
       <div class="row button-container">
         <add-appointment @add="addItem" />
       </div>
@@ -116,7 +116,4 @@ export default {
   margin-top: 60px;
 }
 
-.search-container {
-  /* margin-bottom: 30px; */
-}
 </style>
