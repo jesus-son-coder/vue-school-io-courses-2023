@@ -13,23 +13,37 @@
 export default {
   name: 'IndexPage',
 
+  head: {
+    meta: [
+      {
+        hid: 'title',
+        content: 'Home Page RV CK'
+      },
+      {
+        hid: 'description',
+        content: 'This is the Home Page of RV CK'
+      },
+    ]
+  },
+
   data() {
     return {
       rivers: []
     }
   },
 
-  async fetch () {
-    const res = await this.$http.$get('https://api.nuxtjs.dev/rivers');
-    this.rivers = res;
-  }
-
-  /*
   async asyncData ({ $http }) {
     const res = await $http.$get('https://api.nuxtjs.dev/rivers');
     return {
       rivers: res
     }
-  } */
+  }
+
+  /*
+    async fetch () {
+      const res = await this.$http.$get('https://api.nuxtjs.dev/rivers');
+      this.rivers = res;
+    }
+   */
 }
 </script>
