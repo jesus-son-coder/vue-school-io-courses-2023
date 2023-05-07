@@ -1,10 +1,23 @@
 <template>
-  <p>This is the index Page</p>
+  <div>
+    <h1>Most Popular Rivers in the World</h1>
+    <ul>
+      <li v-for="(river, index) in rivers" :key="`$river-${index}`">
+        <a :href="river.image" target="_blank">{{ river.title }}</a>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'IndexPage',
-  layout: 'blog'
+
+  async asyncData ({ $http }) {
+    const res = await $http.$get('https://api.nuxtjs.dev/rivers');
+    return {
+      rivers: res
+    }
+  }
 }
 </script>
