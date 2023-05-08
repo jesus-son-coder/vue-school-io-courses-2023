@@ -1,19 +1,24 @@
 <template>
   <h1>{{ name }}</h1>
-  <button @click="placeOrder2">Place Order</button>
+  <input type="text" v-model="name"><br>
+  <button @click="placeOrder">Place Order</button>
   <yummy-meal name="Hamburger" :price="Number(5)" @addToCart="addItemToCart" />
 </template>
 
 <script>
 import YummyMeal from "./components/YummyMeal.vue";
+import { ref } from "vue";
 
 export default {
   components: { YummyMeal },
   setup() {
-    const name = "The Snazzy Burger";
+    const name = ref("The Snazzy Burger");
+
+    console.log(name.value);
 
     function placeOrder() {
-      alert('Your order has been placed');
+      this.name = "KFC Burger ;)"
+      alert(`${this.name}: your order has been placed`);
     }
     // Utilisation de la syntaxe raccourcie :
     const placeOrder2 = () => alert("Yut order 2 has been placed !");
