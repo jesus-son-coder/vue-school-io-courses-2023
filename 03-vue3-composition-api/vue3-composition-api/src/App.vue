@@ -13,19 +13,19 @@ export default {
   components: { YummyMeal },
   setup() {
     const name = ref("The Snazzy Burger");
+    name.value = "Hello from the setup function";
 
-    console.log(name.value);
+    console.log("in setup", "--name.value--", name.value);
 
-    function placeOrder() {
-      this.name = "KFC Burger ;)"
-      alert(`${this.name}: your order has been placed`);
-    }
-    // Utilisation de la syntaxe raccourcie :
     const placeOrder2 = () => alert("Yut order 2 has been placed !");
-
     const addItemToCart = (item) => alert(`Le produit ${item} a bien été ajouté au panier`);
 
-    return {name, placeOrder, placeOrder2, addItemToCart};
+    return {name, placeOrder2, addItemToCart};
+  },
+
+  created() {
+    this.name = "Hello from the create hook";
+    console.log("in created", "--this.name--", this.name);
   }
 }
 
