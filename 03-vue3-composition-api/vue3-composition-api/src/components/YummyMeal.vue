@@ -2,7 +2,7 @@
   <div>
     <p>
       <strong>{{ name }}</strong>
-      {{ pricePretty }}
+      {{ pricePrettySentence }}
     </p>
     <button @click="addToCart">Add to Cart</button>
   </div>
@@ -19,15 +19,14 @@ export default {
   setup(props, { emit }) {
     const addToCart = () => emit('addToCart', props.name);
     const pricePretty = computed(() => `$${props.price.toFixed(2)}`);
-    return { addToCart, pricePretty };
+
+    const pricePrettySentence = computed(
+      () => `The price of this is ${pricePretty.value}`
+    );
+
+    return { addToCart, pricePretty, pricePrettySentence };
   },
-  /*
-  Option API :
-  computed: {
-    pricePretty() {
-      return `$${this.price.toFixed(2)}`;
-    }
-  } */
+
 }
 </script>
 

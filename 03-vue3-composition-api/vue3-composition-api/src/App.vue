@@ -2,7 +2,7 @@
   <h1>{{ name }}</h1>
   <input type="text" v-model="name"><br>
   <button @click="placeOrder">Place Order</button>
-  <yummy-meal name="meal.name" :price="meal.price" @addToCart="addItemToCart" />
+  <yummy-meal :name="meal.name" :price="meal.price" @addToCart="addItemToCart" />
 </template>
 
 <script>
