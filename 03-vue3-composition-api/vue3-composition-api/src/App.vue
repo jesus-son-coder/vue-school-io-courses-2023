@@ -14,14 +14,15 @@ export default {
 
   setup() {
     const name = ref("The Snazzy Burger");
-    name.value = "Hello from the setup function";
-
     const meal = reactive({ name: "Hamburger", price: 5});
-
-    console.log(meal.name);
 
     const placeOrder = () => alert("Yut order 2 has been placed !");
     const addItemToCart = (item) => alert(`Le produit ${item} a bien été ajouté au panier`);
+
+    let posts = ref(['post 1', 'post 2']);
+    posts.value = ['post 3', 'post 4'];
+
+
 
     return {name, meal, placeOrder, addItemToCart};
   },
